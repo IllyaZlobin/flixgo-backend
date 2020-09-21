@@ -7,6 +7,6 @@ export class CountriesController {
 
   @Get()
   async getAll() {
-    return await this.countriesService.getAll();  
+    return await this.countriesService.getAll();
   }
 }

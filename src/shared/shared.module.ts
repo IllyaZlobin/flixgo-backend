@@ -4,9 +4,7 @@ import { ConfigService } from './services/config.service';
 @Global()
 @Module({
   providers: [ConfigService],
-  imports: [
-    HttpModule,
-  ],
-  exports: [ConfigService, HttpModule]
+  imports: [HttpModule],
+  exports: [ConfigService, HttpModule],
 })
 export class SharedModule {}

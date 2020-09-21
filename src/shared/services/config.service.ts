@@ -44,6 +44,10 @@ export class ConfigService {
       logger: 'advanced-console',
       logging: true,
       entities: DatabaseEntities,
+      migrations: ['scr/core/typeorm/migrations/*.ts'],
+      cli: {
+        migrationsDir: 'src/core/typeorm/migrations',
+      },
     };
   }
 }
