@@ -1,4 +1,4 @@
-import { UserRole } from '../enums/userRole.enum';
+import { UserRole } from '../../enums';
 import { IBaseModel } from './base.model';
 import { ICommentsResponse } from './commentsResponse.model';
 import { IMovieComments } from './movieComments.model';
