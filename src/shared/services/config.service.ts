@@ -20,10 +20,6 @@ export class ConfigService {
     return this.nodeEnv === 'prod';
   }
 
-  get isLocal(): boolean {
-    return this.nodeEnv === 'local';
-  }
-
   public get(key: string): string {
     return process.env[key];
   }
