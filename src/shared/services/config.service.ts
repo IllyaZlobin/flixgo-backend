@@ -40,7 +40,7 @@ export class ConfigService {
       username: this.get('DB_USERNAME'),
       password: this.get('DB_PASSWORD'),
       database: this.get('DB_DATABASE'),
-      synchronize: false,
+      synchronize: true,
       logger: 'advanced-console',
       logging: true,
       entities: DatabaseEntities,
