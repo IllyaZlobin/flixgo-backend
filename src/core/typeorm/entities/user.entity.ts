@@ -1,6 +1,6 @@
 import { BeforeInsert, Column, Entity, OneToMany } from 'typeorm';
-import { UserRole } from '../enums/userRole.enum';
-import { IUser } from '../models/user.model';
+import { UserRole } from '../../models/enums';
+import { IUser } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { CommentsResponse } from './commentsResponse.entity';
 import { MovieComments } from './movieComments.entity';

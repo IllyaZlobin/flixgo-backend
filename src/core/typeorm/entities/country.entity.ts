@@ -1,4 +1,4 @@
-import { ICountry } from '../models/country.model';
+import { ICountry } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { Movie } from './movie.entity';

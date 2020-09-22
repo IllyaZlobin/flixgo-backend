@@ -1,4 +1,4 @@
-import { IBaseModel } from '../models/base.model';
+import { IBaseModel } from '../../models';
 import {
   CreateDateColumn,
   PrimaryGeneratedColumn,

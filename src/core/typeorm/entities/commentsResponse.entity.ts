@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
-import { ICommentsResponse } from '../models/commentsResponse.model';
+import { ICommentsResponse } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { User } from './user.entity';
 

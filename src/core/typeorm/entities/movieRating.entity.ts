@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
-import { IMovieRating } from '../models/movieRating.model';
+import { IMovieRating } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { Movie } from './movie.entity';
 import { User } from './user.entity';

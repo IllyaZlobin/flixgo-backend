@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
-import { MovieStatus } from '../enums/movieStatus.enum';
-import { IMovie } from '../models/movie.model';
+import { MovieStatus } from '../../models/enums';
+import { IMovie } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { Country } from './country.entity';
 import { MoviePhotos } from './moviePhotos.entity';

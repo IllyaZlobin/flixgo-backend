@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
-import { IMoviePhotos } from '../models/moviePhotos.model';
+import { IMoviePhotos } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { Movie } from './movie.entity';
 
