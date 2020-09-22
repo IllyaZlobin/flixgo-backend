@@ -8,16 +8,20 @@ export class ConfigService {
   constructor() {
     const nodeEnv = this.nodeEnv;
     dotenv.config({
-      path: `.${nodeEnv}.env`,
+      path: `env/.${nodeEnv}.env`,
     });
   }
 
   get isDevelopment(): boolean {
-    return this.nodeEnv === 'development';
+    return this.nodeEnv === 'dev';
   }
 
   get isProduction(): boolean {
-    return this.nodeEnv === 'production';
+    return this.nodeEnv === 'prod';
+  }
+
+  get isLocal(): boolean {
+    return this.nodeEnv === 'local';
   }
 
   public get(key: string): string {
@@ -29,7 +33,7 @@ export class ConfigService {
   }
 
   get nodeEnv(): string {
-    return this.get('NODE_ENV') || 'development';
+    return this.get('ENV') || 'dev';
   }
 
   get TypeOrmConfig(): TypeOrmModuleOptions {
@@ -41,8 +45,7 @@ export class ConfigService {
       password: this.get('DB_PASSWORD'),
       database: this.get('DB_DATABASE'),
       synchronize: true,
-      logger: 'advanced-console',
-      logging: true,
+      logging: "all",
       entities: DatabaseEntities,
       migrations: ['scr/core/typeorm/migrations/*.ts'],
       cli: {
