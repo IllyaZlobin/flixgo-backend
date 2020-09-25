@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
-import { MovieStatus } from '../../models/enums';
+import { MovieQuality, MovieStatus } from '../../models/enums';
 import { IMovie } from '../../models';
 import { AbstractEntity } from './base.entity';
 import { Country } from './country.entity';
@@ -31,6 +31,9 @@ export class Movie extends AbstractEntity implements IMovie {
 
   @Column('varchar')
   poster: string;
+
+  @Column({ type: 'enum', enum: MovieQuality })
+  quality: MovieQuality;
 
   @ManyToOne(
     type => Country,
