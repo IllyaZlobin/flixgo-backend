@@ -5,7 +5,9 @@ import { IMovieComments } from './movieComments.model';
 import { IMovieRating } from './movieRating.model';
 
 export interface IUser extends IBaseModel {
-  name: string;
+  firstName: string;
+  lastName?: string;
+  userName: string;
   email: string;
   password: string;
   role: UserRole;

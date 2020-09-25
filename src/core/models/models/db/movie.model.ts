@@ -1,5 +1,5 @@
 import { ICountry, IMoviePhotos, IMovieRating } from '.';
-import { MovieStatus } from '../../enums';
+import { MovieQuality, MovieStatus } from '../../enums';
 import { IBaseModel } from './base.model';
 
 export interface IMovie extends IBaseModel {
@@ -11,6 +11,7 @@ export interface IMovie extends IBaseModel {
   age: number;
   status: MovieStatus;
   poster: string;
+  quality: MovieQuality;
   country: ICountry;
   photos: IMoviePhotos[];
   ratings: IMovieRating[];

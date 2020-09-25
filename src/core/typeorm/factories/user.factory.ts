@@ -9,7 +9,7 @@ define(User, () => {
   const role = UserRole.Admin;
 
   const user = new User();
-  user.name = name;
+  user.firstName = name;
   user.email = email;
   user.password = password;
   user.role = role;

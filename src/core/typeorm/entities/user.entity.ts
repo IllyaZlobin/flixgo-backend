@@ -10,7 +10,13 @@ import * as bcrypt from 'bcrypt';
 @Entity('user')
 export class User extends AbstractEntity implements IUser {
   @Column('varchar')
-  name: string;
+  firstName: string;
+
+  @Column('varchar', { nullable: true })
+  lastName?: string;
+
+  @Column('varchar')
+  userName: string;
 
   @Column('varchar')
   email: string;
