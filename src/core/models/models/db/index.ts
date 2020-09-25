@@ -6,3 +6,4 @@ export * from './moviePhotos.model';
 export * from './movieRating.model';
 export * from './user.model';
 export * from './base.model';
+export * from './session.model'

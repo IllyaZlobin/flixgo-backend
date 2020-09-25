@@ -6,3 +6,4 @@ export * from './movieComments.entity';
 export * from './moviePhotos.entity';
 export * from './movieRating.entity';
 export * from './user.entity';
+export * from './session.entity';

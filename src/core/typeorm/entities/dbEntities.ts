@@ -4,6 +4,7 @@ import { Movie } from './movie.entity';
 import { MovieComments } from './movieComments.entity';
 import { MoviePhotos } from './moviePhotos.entity';
 import { MovieRating } from './movieRating.entity';
+import { Session } from './session.entity';
 import { User } from './user.entity';
 
 export const DatabaseEntities = [
@@ -14,4 +15,5 @@ export const DatabaseEntities = [
   MoviePhotos,
   MovieRating,
   CommentsResponse,
+  Session
 ];
