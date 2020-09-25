@@ -1,2 +1,2 @@
 export * from './movie';
-export * from './userRole.enum';
+export * from './user';
