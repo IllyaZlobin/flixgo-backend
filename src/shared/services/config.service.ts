@@ -43,7 +43,8 @@ export class ConfigService {
       synchronize: true,
       logging: "all",
       entities: DatabaseEntities,
-      migrations: ['scr/core/typeorm/migrations/*.ts'],
+      migrationsTableName: 'custom_migration_table',
+      migrations: ['dist/core/typeorm/migrations/**/*{.ts,.js}'],
       cli: {
         migrationsDir: 'src/core/typeorm/migrations',
       },
