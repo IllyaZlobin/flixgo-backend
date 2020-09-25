@@ -41,7 +41,8 @@ export class User extends AbstractEntity implements IUser {
 
   @BeforeInsert()
   async setPassword(password: string): Promise<void> {
-    const salt = await bcrypt.genSalt(process.env.PASSWORD_SALT);
+    const salt = await bcrypt.genSalt(Number(process.env.PASSWORD_SALT));
+    
     this.password = await bcrypt.hash(password || this.password, salt);
   }
 }

@@ -9,7 +9,7 @@ export class Country extends AbstractEntity implements ICountry {
   name: string;
 
   @Column('varchar')
-  region: string;
+  code: string;
 
   @OneToMany(
     type => Movie,

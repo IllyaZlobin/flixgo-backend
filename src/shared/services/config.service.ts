@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { DatabaseEntities } from 'src/core/typeorm/entities/dbEntities';
+import { DatabaseEntities } from '../../core/typeorm';
 
 @Injectable()
 export class ConfigService {
@@ -47,6 +47,8 @@ export class ConfigService {
       cli: {
         migrationsDir: 'src/core/typeorm/migrations',
       },
-    };
+      factories: ['src/core/typeorm/factories/**/*{.ts,.js}'],
+      seeds: ['src/core/typeorm/seeds/**/*{.ts,.js}']
+    } as TypeOrmModuleOptions;
   }
 }

@@ -3,6 +3,6 @@ import { IMovie } from './movie.model';
 
 export interface ICountry extends IBaseModel {
   name: string;
-  region: string;
+  code: string;
   movies: IMovie[];
 }
