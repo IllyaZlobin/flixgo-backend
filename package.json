@@ -8,6 +8,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "postinstall": "export ENV=prod && npm run db:generate",
     "start:dev": "export ENV=dev && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "export env=prod && node dist/main",
@@ -25,7 +26,8 @@
     "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config -n src/core/typeorm/ormConfig.ts",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n src/core/typeorm/ormConfig.ts",
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop -f src/core/typeorm/ormConfig.ts",
-    "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync -f src/core/typeorm/ormConfig.ts"
+    "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync -f src/core/typeorm/ormConfig.ts",
+    "db:generate": "npm run schema:drop && npm run migration:run && npm run seed:run"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
