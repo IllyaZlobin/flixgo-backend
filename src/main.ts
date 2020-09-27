@@ -5,7 +5,7 @@ import * as RateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import { setupFilters, setupInterceptors, setupSwagger } from './startup';
-
+import { setupPipes } from './startup/pipes.setup';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,6 +25,7 @@ async function bootstrap() {
 
   setupFilters(app);
   setupInterceptors(app);
+  setupPipes(app);
   setupSwagger(app, 'FlixGo API', 'List of apis', '1.0.0');
 
   const port = process.env.PORT || 3000;
