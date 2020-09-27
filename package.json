@@ -13,7 +13,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:dev": "export ENV=dev && nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "export env=prod && npm run db:generate && node dist/main",
+    "start:prod": "export ENV=prod && npm run db:generate && node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
