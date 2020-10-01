@@ -1,8 +1,9 @@
 import { Module, HttpModule, Global } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from './services/config.service';
+import { S3Service } from './services/s3.service';
 
-const providers = [ConfigService];
+const providers = [ConfigService, S3Service];
 @Global()
 @Module({
   providers,

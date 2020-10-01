@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { DatabaseEntities } from '../../core/typeorm';
+import { IS3Config } from '../../core/models';
 
 @Injectable()
 export class ConfigService {
@@ -41,7 +42,7 @@ export class ConfigService {
       password: this.get('DB_PASSWORD'),
       database: this.get('DB_DATABASE'),
       synchronize: false,
-      logging: "all",
+      logging: 'all',
       entities: DatabaseEntities,
       migrationsTableName: 'custom_migration_table',
       migrations: ['dist/core/typeorm/migrations/**/*{.ts,.js}'],
@@ -49,7 +50,15 @@ export class ConfigService {
         migrationsDir: 'src/core/typeorm/migrations',
       },
       factories: ['src/core/typeorm/factories/**/*{.ts,.js}'],
-      seeds: ['src/core/typeorm/seeds/**/*{.ts,.js}']
+      seeds: ['src/core/typeorm/seeds/**/*{.ts,.js}'],
     } as TypeOrmModuleOptions;
+  }
+
+  get s3Config(): IS3Config {
+    return {
+      accessKeyId: this.get('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: this.get('AWS_SECRET_ACCESS_KEY'),
+      bucketName: this.get('AWS_BUCKET_NAME'),
+    };
   }
 }

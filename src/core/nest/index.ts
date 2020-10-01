@@ -1,3 +1,4 @@
+export * from './aws';
 export * from './decorators';
 export * from './dtos';
 export * from './exceptions';
