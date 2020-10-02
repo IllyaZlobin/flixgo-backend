@@ -14,17 +14,17 @@ export class MovieComments extends AbstractEntity implements IMovieComments {
     type => User,
     user => user.movieComments,
   )
-  user: User;
+  user?: User;
 
   @ManyToOne(
     type => Movie,
     movie => movie.comments,
   )
-  movie: Movie;
+  movie?: Movie;
 
   @OneToMany(
     type => CommentsResponse,
     commentsResponse => commentsResponse.movieComment,
   )
-  commentsResponses: CommentsResponse[];
+  commentsResponses?: CommentsResponse[];
 }

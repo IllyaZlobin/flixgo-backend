@@ -6,14 +6,14 @@ import { User } from './user.entity';
 @Entity('session')
 export class Session extends AbstractEntity implements ISession {
   @Column('varchar')  
-  accessToken: string;
+  accessToken?: string;
 
   @Column('varchar')
-  refreshToken: string;
+  refreshToken?: string;
 
   @Column('varchar', { nullable: true })
   ipAddress?: string;
 
   @ManyToOne(type => User, user => user.sessions)
-  user: IUser;
+  user?: IUser;
 }

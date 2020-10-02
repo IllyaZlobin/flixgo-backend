@@ -8,20 +8,20 @@ import { User } from './user.entity';
 export class CommentsResponse extends AbstractEntity
   implements ICommentsResponse {
   @Column('int')
-  like: number;
+  like?: number;
 
   @Column('int')
-  dislike: number;
+  dislike?: number;
 
   @ManyToOne(
     type => User,
     user => user.commentsResponses,
   )
-  user: User;
+  user?: User;
 
   @ManyToOne(
     type => MovieComments,
     movieComments => movieComments.commentsResponses,
   )
-  movieComment: MovieComments;
+  movieComment?: MovieComments;
 }

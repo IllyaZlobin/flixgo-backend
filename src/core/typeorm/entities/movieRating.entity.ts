@@ -10,14 +10,14 @@ export class MovieRating extends AbstractEntity implements IMovieRating {
     type => Movie,
     movie => movie.ratings,
   )
-  movie: Movie;
+  movie?: Movie;
 
   @ManyToOne(
     type => User,
     user => user.movieRatings,
   )
-  user: User;
+  user?: User;
 
   @Column('int')
-  rating: number;
+  rating?: number;
 }

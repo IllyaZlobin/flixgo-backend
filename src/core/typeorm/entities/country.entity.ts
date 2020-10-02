@@ -16,5 +16,5 @@ export class Country extends AbstractEntity implements ICountry {
     type => Movie,
     movie => movie.country,
   )
-  movies: Movie[];
+  movies?: Movie[];
 }
