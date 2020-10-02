@@ -1,4 +1,4 @@
-import { ICountry, IMoviePhotos, IMovieRating } from '.';
+import { ICountry, IMovieComments, IMoviePhotos, IMovieRating } from '.';
 import { MovieQuality, MovieStatus } from '../../enums';
 import { IBaseModel } from './base.model';
 
@@ -15,4 +15,5 @@ export interface IMovie extends IBaseModel {
   country: ICountry;
   photos?: IMoviePhotos[];
   ratings?: IMovieRating[];
+  comments?: IMovieComments[];
 }

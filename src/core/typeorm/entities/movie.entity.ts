@@ -5,6 +5,7 @@ import { AbstractEntity } from './base.entity';
 import { Country } from './country.entity';
 import { MoviePhotos } from './moviePhotos.entity';
 import { MovieRating } from './movieRating.entity';
+import { MovieComments } from './movieComments.entity';
 
 @Entity('movie')
 export class Movie extends AbstractEntity implements IMovie {
@@ -52,4 +53,10 @@ export class Movie extends AbstractEntity implements IMovie {
     movieRating => movieRating.movie,
   )
   ratings?: MovieRating[];
+
+  @OneToMany(
+    type => MovieComments,
+    movieComments => movieComments.movie,
+  )
+  comments?: MovieComments[];
 }
