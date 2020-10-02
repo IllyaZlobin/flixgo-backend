@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from './config.service';
 import * as AWS from 'aws-sdk';
-import { File } from '../../core/models';
-import { AwsHelper, UserFriendlyException } from 'src/core/nest';
+import { File, IUploadImageResponse } from '../../core/models';
+import { AwsHelper, UserFriendlyException } from '../../core/nest';
 
 @Injectable()
 export class S3Service {
@@ -14,7 +14,7 @@ export class S3Service {
     this.s3 = new AWS.S3({ credentials });
   }
 
-  async uploadImage(file: File): Promise<string> {
+  async uploadImage(file: File): Promise<IUploadImageResponse> {
     try {
       const fileName = AwsHelper.fileName();
 
@@ -28,9 +28,22 @@ export class S3Service {
         })
         .promise();
 
-      return result.Location;
+      const { Key, Location } = result;
+
+      return { Key, Location };
     } catch (err) {
-      throw new UserFriendlyException(err.message);
+      throw new UserFriendlyException('Problem with uploading image');
     }
+  }
+
+  async deleteImages(urls: string[]) {
+    const deleteOptions = {
+      Bucket: this._configService.get('AWS_BUCKET_NAME'),
+      Delete: { Objects: urls.map(x => ({ Key: AwsHelper.getFileKey(x) })) },
+    };
+
+    await this.s3.deleteObjects(deleteOptions, (err, data) => {
+      if (err) throw new UserFriendlyException('Problem with deleting image');
+    });
   }
 }
