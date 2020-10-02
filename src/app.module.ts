@@ -7,6 +7,7 @@ import { ConfigService } from './shared/services/config.service';
 import { CountryModule } from './modules/countries/countries.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { MovieModule } from './modules/movies/movie.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserModule } from './modules/user/user.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => configService.TypeOrmConfig,
     }),
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [AppService],

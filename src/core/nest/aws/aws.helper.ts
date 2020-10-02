@@ -23,4 +23,8 @@ export class AwsHelper {
   static fileName(): string {
     return uuid();
   }
+
+  static getFileKey(url: string): string {
+    return url.split(process.env.AWS_BUCKET_URL).pop();
+  }
 }
