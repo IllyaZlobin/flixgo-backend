@@ -3,5 +3,5 @@ import { IMovie } from './movie.model';
 
 export interface IMoviePhotos extends IBaseModel {
   photo: string;
-  movie: IMovie;
+  movie?: IMovie;
 }

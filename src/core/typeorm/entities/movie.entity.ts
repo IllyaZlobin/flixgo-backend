@@ -30,7 +30,7 @@ export class Movie extends AbstractEntity implements IMovie {
   status: MovieStatus;
 
   @Column('varchar')
-  poster: string;
+  poster?: string;
 
   @Column({ type: 'enum', enum: MovieQuality })
   quality: MovieQuality;
@@ -45,11 +45,11 @@ export class Movie extends AbstractEntity implements IMovie {
     type => MoviePhotos,
     moviesPhotos => moviesPhotos.movie,
   )
-  photos: MoviePhotos[];
+  photos?: MoviePhotos[];
 
   @OneToMany(
     type => MovieRating,
     movieRating => movieRating.movie,
   )
-  ratings: MovieRating[];
+  ratings?: MovieRating[];
 }

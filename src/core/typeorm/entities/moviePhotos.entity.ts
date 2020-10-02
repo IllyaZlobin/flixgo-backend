@@ -12,5 +12,5 @@ export class MoviePhotos extends AbstractEntity implements IMoviePhotos {
     type => Movie,
     movie => movie.photos,
   )
-  movie: Movie;
+  movie?: Movie;
 }

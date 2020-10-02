@@ -10,9 +10,9 @@ export interface IMovie extends IBaseModel {
   genre: string;
   age: number;
   status: MovieStatus;
-  poster: string;
+  poster?: string;
   quality: MovieQuality;
   country: ICountry;
-  photos: IMoviePhotos[];
-  ratings: IMovieRating[];
+  photos?: IMoviePhotos[];
+  ratings?: IMovieRating[];
 }
