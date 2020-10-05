@@ -7,11 +7,11 @@ import { User } from './user.entity';
 @Entity('comments_response')
 export class CommentsResponse extends AbstractEntity
   implements ICommentsResponse {
-  @Column('int')
-  like?: number;
+  @Column('boolean')
+  like?: boolean;
 
-  @Column('int')
-  dislike?: number;
+  @Column('boolean')
+  dislike?: boolean;
 
   @ManyToOne(
     type => User,

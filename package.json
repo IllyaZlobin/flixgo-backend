@@ -30,7 +30,8 @@
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n src/core/typeorm/ormConfig.ts",
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop -f src/core/typeorm/ormConfig.ts",
     "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync -f src/core/typeorm/ormConfig.ts",
-    "db:generate:prod": "export ENV=prod && npm run schema:drop && npm run migration:run && npm run seed:run"
+    "db:generate:prod": "export ENV=prod && npm run schema:drop && npm run migration:run && npm run seed:run",
+    "db:generate:dev": "export ENV=dev && npm run schema:drop && npm run migration:run && npm run seed:run"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",

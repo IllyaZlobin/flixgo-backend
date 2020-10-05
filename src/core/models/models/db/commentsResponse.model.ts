@@ -3,8 +3,8 @@ import { IBaseModel } from './base.model';
 import { IMovieComments } from './movieComments.model';
 
 export interface ICommentsResponse extends IBaseModel {
-  like?: number;
-  dislike?: number;
+  like?: boolean;
+  dislike?: boolean;
   user?: IUser;
   movieComment?: IMovieComments;
 }
