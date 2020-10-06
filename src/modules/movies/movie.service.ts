@@ -1,9 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
 import { File } from '../../core/models';
-import { UserFriendlyException } from 'src/core/nest';
+import {
+  AwsHelper,
+  NotFoundException,
+  UserFriendlyException,
+} from '../../core/nest';
 import { Country, Movie, MoviePhotos } from 'src/core/typeorm';
-import { Connection, QueryRunner, Repository } from 'typeorm';
+import {
+  Connection,
+  createQueryBuilder,
+  QueryRunner,
+  Repository,
+} from 'typeorm';
 import { S3Service } from '../../shared/services/s3.service';
 import { MovieCreateRequest } from './dto/create/movieCreate.request';
 import { MovieCreateResponse } from './dto/create/movieCreate.response';
@@ -13,6 +22,7 @@ export class MoviesService {
   constructor(
     private readonly _s3Service: S3Service,
     @InjectRepository(Movie)
+    private readonly _movieRepository: Repository<Movie>,
     @InjectRepository(Country)
     private readonly _countryRepository: Repository<Country>,
     @InjectConnection()
@@ -21,7 +31,7 @@ export class MoviesService {
 
   /**
    * @description create new movie
-   * @param model 
+   * @param model
    */
   async createMovie(model: MovieCreateRequest): Promise<MovieCreateResponse> {
     const {
@@ -90,6 +100,29 @@ export class MoviesService {
     }
   }
 
+  async deleteMovie(id: number) {
+    const movie = await this.checkMovieExist(id);
+
+    const queryRunner = this._connection.createQueryRunner();
+    await queryRunner.startTransaction();
+
+    try {
+      await queryRunner.manager.delete('movie', id);
+
+      await queryRunner.commitTransaction();
+      
+      await this._s3Service.deleteImages([
+        ...movie.photos.map(x => AwsHelper.getFileKey(x.photo)),
+        movie.poster,
+      ]);
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw new UserFriendlyException('Problem with deleting movie');
+    } finally {
+      queryRunner.release();
+    }
+  }
+
   private async getCountryByName(name: string): Promise<Country> {
     const country = await this._countryRepository.findOne({ where: { name } });
 
@@ -139,5 +172,17 @@ export class MoviesService {
     }
 
     return photos;
+  }
+
+  private async checkMovieExist(id: number): Promise<Movie> {
+    const movie = await this._movieRepository.findOne(id, {
+      relations: ['photos'],
+    });
+
+    if (!movie) {
+      throw new NotFoundException(`Movie with id ${id} is not found`, ['id']);
+    }
+
+    return movie;
   }
 }
