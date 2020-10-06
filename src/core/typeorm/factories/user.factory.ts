@@ -11,14 +11,15 @@ define(User, () => {
   const password = '123456';
   const role = UserRole.Admin;
 
-  const user = new User();
-  user.firstName = name;
-  user.lastName = lastName;
-  user.userName = userName;
-  user.status = status;
-  user.email = email;
-  user.password = password;
-  user.role = role;
+  const user = new User(
+    email,
+    password,
+    userName,
+    name,
+    lastName,
+    status,
+    role,
+  );
 
   return user;
 });

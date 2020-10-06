@@ -62,4 +62,23 @@ export class User extends AbstractEntity implements IUser {
 
     this.password = await bcrypt.hash(password || this.password, salt);
   }
+
+  constructor(
+    email: string,
+    password: string,
+    username: string,
+    firstname?: string,
+    lastname?: string,
+    status: UserStatus = UserStatus.CHECKING,
+    role: UserRole = UserRole.User,
+  ) {
+    super();
+    this.email = email;
+    this.password = password;
+    this.userName = username;
+    this.lastName = lastname;
+    this.status = status;
+    this.firstName = firstname;
+    this.role = role;
+  }
 }
