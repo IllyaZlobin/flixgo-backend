@@ -12,7 +12,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "heroku-postbuild": "npm run build && npm run db:generate:prod",
-    "start:dev": "export ENV=dev && nest start --watch",
+    "start:dev": "set ENV=dev&& nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "export ENV=prod && node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

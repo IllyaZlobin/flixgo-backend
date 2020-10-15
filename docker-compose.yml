@@ -1,0 +1,38 @@
+version: "3.7"
+services: 
+    database:
+        container_name: database
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: 123456
+            MYSQL_DATABASE: flixgodb
+            MYSQL_USER: root
+            MYSQL_PASSWORD: 123456
+        ports:
+            - 3306:3306    
+        expose: 
+            [3306]
+        volumes:
+            - my-db:/var/lib/mysql        
+    nest:
+        container_name: nest-container 
+        build: 
+            context: .
+        volumes: 
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports: 
+            - 3000:3000
+        command: npm run start:dev
+        env_file: 
+            - env/.dev.env 
+        networks: 
+            - webnet
+        depends_on: 
+            - database                        
+networks:
+    webnet:
+volumes: 
+    my-db:                                  
