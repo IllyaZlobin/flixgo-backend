@@ -3,13 +3,15 @@ import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
 import { File } from '../../core/models';
 import {
   AwsHelper,
+  ICounted,
+  IPagedResult,
   NotFoundException,
   UserFriendlyException,
 } from '../../core/nest';
 import { Country, Movie, MoviePhotos } from 'src/core/typeorm';
 import {
   Connection,
-  createQueryBuilder,
+  Like,
   QueryRunner,
   Repository,
 } from 'typeorm';
@@ -28,6 +30,38 @@ export class MoviesService {
     @InjectConnection()
     private readonly _connection: Connection,
   ) {}
+
+  /**
+   * @description retrieve the list of movies with pagination
+   * @param {limit: number, offset: number}
+   */
+  async getAll({ limit, offset }: IPagedResult): Promise<ICounted<Movie>> {
+    const [movies, totalCount] = await this._movieRepository.findAndCount({
+      take: limit,
+      skip: offset,
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    const result: ICounted<Movie> = { items: movies, totalCount };
+
+    return result;
+  }
+
+  /**
+   * @description find movies by title
+   * @param name
+   */
+  async find(name: string): Promise<Movie[]> {
+    const movies = await this._movieRepository.find({
+      where: {
+        title: Like(`%${name}%`),
+      },
+    });
+
+    return movies;
+  }
 
   /**
    * @description create new movie
@@ -110,7 +144,7 @@ export class MoviesService {
       await queryRunner.manager.delete('movie', id);
 
       await queryRunner.commitTransaction();
-      
+
       await this._s3Service.deleteImages([
         ...movie.photos.map(x => AwsHelper.getFileKey(x.photo)),
         movie.poster,
