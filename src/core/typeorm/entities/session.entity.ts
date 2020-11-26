@@ -1,4 +1,4 @@
-import { ISession, IUser } from 'src/core/models';
+import { ISession, IUser } from '../../../core/models';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { AbstractEntity } from './base.entity';
 import { User } from './user.entity';

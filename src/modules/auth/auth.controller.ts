@@ -16,7 +16,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { ICurrentUser } from 'src/core/models';
+import { ICurrentUser } from '../../core/models';
 import { AuthGuard, AuthUser } from '../../core/nest';
 import { AuthService } from './auth.service';
 import { LoginRequest } from './dto/login/login.request';
@@ -42,6 +42,7 @@ export class AuthController {
       'If passed credentials is not valid, will return not found error',
   })
   async login(@Body() loginRequest: LoginRequest): Promise<LoginResponse> {
+    console.log(`body`, loginRequest)
     const response = await this._authService.login(loginRequest);
 
     return response;

@@ -8,7 +8,7 @@ import {
   NotFoundException,
   UserFriendlyException,
 } from '../../core/nest';
-import { Country, Movie, MoviePhotos } from 'src/core/typeorm';
+import { Country, Movie, MoviePhotos } from '../../core/typeorm';
 import {
   Connection,
   Like,
